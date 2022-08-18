@@ -1,71 +1,166 @@
-html {
-   font-family: 'Press Start 2P';
-   font-size: 2rem;
+* {
+   box-sizing: border-box;
+   font-size: 9px;
 }
-
 body {
-   margin: 0;
-   padding: 0;
    display: flex;
    justify-content: center;
-   width: 100vw;
-   height: 100vh;
-   background-color: #222;
-   color: white;
+   align-items: center;
+   min-height: 100vh;
+   margin: 0;
+   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1,
+p,
+span {
+   margin: 0;
 }
 
-main {
+img {
+   border-radius: 40%;
+   cursor: pointer;
+}
+
+.game {
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   border: 5px solid silver;
+   padding: 5rem 5rem;
+   border-radius: 5rem;
 }
-
-#button {
-   --color: firebrick;
-   --border-color: firebrick;
-   --shadow-color: rgb(112, 20, 20);
-
+.header {
+   height: 15rem;
+   width: 40rem;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   border: 5px solid #5e5e5a;
+   border-radius: 1rem;
    position: relative;
-   font-size: 0.75rem;
-   width: 200px;
-   height: 75px;
-   max-width: 100%;
-   max-height: 100%;
-   margin: 2rem;
-   border: none;
-   background-size: cover;
+   margin-bottom: 3rem;
+
+   &::after,
+   &::before {
+      background: rgb(245, 63, 63);
+      position: absolute;
+      padding: 8px 4px;
+      color: white;
+      font-size: 3rem;
+      border-radius: 0.5rem;
+   }
+
+   &::before {
+      content: 'User';
+      left: -4rem;
+   }
+
+   &::after {
+      content: 'Comp';
+      right: -4rem;
+   }
+
+   &__score {
+      display: flex;
+      position: relative;
+
+      gap: 2rem;
+      h1 {
+         margin: 0;
+         font-size: 5rem;
+      }
+      span {
+         font-size: 5rem;
+         line-height: 5.5rem;
+      }
+   }
+}
+
+.text__win-lose {
+   min-width: 40rem;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   img {
+      height: 13rem;
+      width: fit-content;
+      animation: animate 0.5s infinite;
+      padding: 5px;
+   }
+   p {
+      font-size: 4rem;
+   }
+}
+
+.user__choice {
+   display: flex;
+   gap: 2rem;
+   margin-bottom: 2rem;
+   margin-top: 3rem;
+
+   img {
+      height: 12rem;
+      border-radius: 40%;
+      cursor: pointer;
+   }
+
+   img:hover {
+      transform: scale(1.1);
+      transition: transform 0.3s;
+   }
+}
+
+@keyframes animate {
+   0% {
+      transform: translateY(0px);
+   }
+   30% {
+      transform: translateY(5px);
+   }
+   50% {
+      transform: translateY(0px);
+   }
+   70% {
+      transform: translateY(-5px);
+   }
+   100% {
+      transform: translateY(0px);
+   }
+}
+
+.btn__new-game {
+   border: 2px solid #afaf87;
+   box-shadow: 0px 8px 16px 0 rgba(0, 0, 0, 0.2),
+      0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   font-weight: 500;
    cursor: pointer;
-   outline: none;
-   color: white;
-   font-family: 'Press Start 2P', monospace;
-   font-weight: bold;
-   background-color: var(--color);
-   box-shadow: 0 -3px var(--color), 3px 0 var(--color), 0 3px var(--color),
-      -3px 0 var(--color), 0 -6px var(--border-color),
-      3px -3px var(--border-color), 6px 0 var(--border-color),
-      0 6px var(--border-color), -3px 3px var(--border-color),
-      -6px 0 var(--border-color), -3px -3px var(--border-color),
-      3px 3px var(--border-color), 0px 9px var(--shadow-color),
-      3px 6px var(--shadow-color), 6px 3px var(--shadow-color),
-      0px 9px var(--shadow-color), -3px 6px var(--shadow-color),
-      -6px 3px var(--shadow-color);
+   padding: 0.7rem 2rem;
+   span {
+      font-size: 2rem;
+   }
+   &:hover {
+      box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
+         0 17px 50px 0 rgba(0, 0, 0, 0.19);
+   }
 }
 
-#button:active {
-   top: 6px;
-   box-shadow: 0 -3px var(--color), 3px 0 var(--color), 0 3px var(--color),
-      -3px 0 var(--color), 0 -6px var(--border-color),
-      3px -3px var(--border-color), 6px 0 var(--border-color),
-      0 6px var(--border-color), -3px 3px var(--border-color),
-      -6px 0 var(--border-color), -3px -3px var(--border-color),
-      3px 3px var(--border-color), 0px 6px var(--shadow-color),
-      3px 3px var(--shadow-color), 6px 0px var(--shadow-color),
-      0px 6px var(--shadow-color), -3px 3px var(--shadow-color),
-      -6px 0px var(--shadow-color);
-}
-
-#display,
-#counter {
-   height: 32px;
+@media screen and (max-width: 430px) {
+   * {
+      font-size: 6px;
+   }
+   .text__win-lose {
+      img {
+         height: 13rem;
+         width: 11rem;
+         animation: animate 0.5s infinite;
+      }
+   }
+   .user__choice {
+      img {
+         height: 12rem;
+         width: 10rem;
+      }
+   }
 }

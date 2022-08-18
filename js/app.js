@@ -1,40 +1,87 @@
-let clicks = 0;
+const userScore = document.querySelector('.header__score__user');
+const compScore = document.querySelector('.header__score__comp');
+const winOrLose = document.querySelector('.text');
+const userChoise = document.querySelectorAll('.choise');
+const newGame = document.querySelector('.btn__new-game');
+const compChoisePic = document.querySelector('.comp-choise');
 
-const TIMEOUT = 5000;
+const arrCompChoise = ['s', 'c', 'p'];
 
-const display = document.querySelector('#display');
-const button = document.querySelector('#button');
-const counter = document.querySelector('#counter');
-const newgame = document.querySelector('#newgame');
-button.onclick = start;
+const arrPictures = [
+   './img/stone.png',
+   './img/scissors.png',
+   './img/paper.png',
+];
+userScore.textContent = 0;
+compScore.textContent = 0;
 
-function start() {
-   const startTime = Date.now();
+userChoise.forEach((item) => {
+   item.addEventListener('click', () => {
+      setTimeout(() => {
+         const userMotion = item.dataset.choise;
+         const compMotion = compChoise();
+         winOrLose.textContent = '';
+         const variant = userMotion + compMotion;
 
-   display.textContent = formatTime(TIMEOUT);
-   button.onclick = () => (counter.textContent = clicks++);
+         switch (variant) {
+            case 'ss':
+            case 'cc':
+            case 'pp':
+               winOrLose.textContent = 'Draw';
+               compChoisePic.style.background = 'yellow';
+               break;
 
-   const interval = setInterval(() => {
-      const delta = Date.now() - startTime;
-      display.textContent = formatTime(TIMEOUT - delta);
-   }, 100);
+            case 'ps':
+            case 'cp':
+            case 'sc':
+               userScore.textContent++;
+               winOrLose.textContent = 'Win';
+               compChoisePic.style.background = 'green';
 
-   const timeout = setTimeout(() => {
-      button.onclick = null;
-      display.textContent = 'Game Over';
+               break;
+            case 'sp':
+            case 'cs':
+            case 'pc':
+               compScore.textContent++;
+               winOrLose.textContent = 'Lose';
+               compChoisePic.style.background = 'red';
+               break;
+         }
 
-      clearInterval(interval);
-      clearTimeout(timeout);
-   }, TIMEOUT);
-}
-
-function formatTime(ms) {
-   return Number.parseFloat(ms / 1000).toFixed(2);
-}
-
-newgame.addEventListener('click', () => {
-   display.textContent = '';
-   counter.textContent = '';
-   clicks = 0;
-   button.onclick = start;
+         setTimeout(() => {
+            winOrLose.textContent = 'Your move';
+            compChoisePic.src = './img/choise2.png';
+            compChoisePic.style.background = 'none';
+         }, 500);
+      }, 500);
+   });
 });
+
+function compChoise() {
+   const random = Math.floor(Math.random() * 3);
+   compChoisePic.src = arrPictures[random];
+   compChoisePic.style.background = 'none';
+   return arrCompChoise[random];
+}
+
+newGame.addEventListener('click', () => {
+   compScore.textContent = 0;
+   userScore.textContent = 0;
+});
+
+// let ms = prompt();
+// function delay(ms) {
+//    return new Promise((resolve) => setTimeout(resolve, ms));
+// }
+
+// delay(ms).then(() => alert(`выполнилось через ${ms / 1000} секунды`));
+
+function dontGiveMeFive(num1, num2) {
+   let arr = [];
+   for (let i = num1; i < num2; i++) {
+      if (i === 5) {
+      } else arr.push(i);
+   }
+   return console.log(arr);
+}
+dontGiveMeFive(4, 55);

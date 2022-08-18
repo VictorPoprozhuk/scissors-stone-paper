@@ -6,21 +6,39 @@
      <meta http-equiv="X-UA-Compatible" content="IE=edge">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="./css/style.css">
+
+
      <title> </title>
 </head>
 
-
 <body>
-     <main>
-          <div id="display"></div>
+     <div class="game">
+          <div class="header">
+               <div class="header__score">
+                    <h1 class="header__score__user">
 
-          <button id="button">clickr</button>
+                    </h1>
+                    <span>:</span>
+                    <h1 class="header__score__comp">
 
-          <div id="counter"></div>
-          <div id="newgame"
-               style="width: 100px;cursor: pointer; height: 50px; font-size: 15px; text-align: center;  background: #333;">
-               New Game</div>
-     </main>
+                    </h1>
+
+               </div>
+          </div>
+          <div class="text__win-lose">
+               <img src="./img/choise2.png" class="comp-choise" alt="">
+               <p class="text">Your move</p>
+          </div>
+
+          <div class="user__choice">
+               <img src="./img/stone.png" alt="stone" class="user__stone choise" data-choise="s">
+               <img src="./img/scissors.png" alt="scissors" class="user__scissors choise " data-choise="c">
+               <img src="./img/paper.png" alt="paper" class="user__paper choise" data-choise="p">
+          </div>
+          <div class="btn__new-game"><span>New Game</span></div>
+     </div>
+
+
 
      <script src="./js/app.js"></script>
 </body>
